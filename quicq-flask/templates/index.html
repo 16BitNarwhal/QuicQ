@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div id="box-0" class="box" style="background-color: {{ colours[0][0] }};">
+    <div class="columns">
+        <div class="column is-6" style="display: inline;">
+            <img style="display: inline;vertical-align:middle; height: 50px;" src="/static/img/rbc.png" alt="">
+            <h1 class="subtitle is-3 ml-2" style="display: inline;vertical-align:middle; ">RBC Online Support</h1>
+            <span class="tag is-info ml-2" style="display: inline;vertical-align:middle;">Online</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c0-0" class="tag {{ colours[0][1] }} is-large">            <i class="fas fa-clock mr-2"></i>
+                <b id="wt0">{{ wt[0] }}</b>&nbsp;minutes</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c1-0" class="tag {{ colours[0][1] }} is-large">
+                <i class="fas fa-user-friends mr-2"></i> <b id="p0">{{ p[0] }}</b>&nbsp;people in line</span>
+          </div>
+        
+    </div>
+    <p>Powered by Genesys™ API</p>
+</div>
+
+
+<div id="box-1" class="box" style="background-color:  {{ colours[1][0] }};">
+    <div class="columns">
+        <div class="column is-6" style="display: inline;">
+            <img style="display: inline;vertical-align:middle; height: 50px;" src="/static/img/rbc.png" alt="">
+            <h1 class="subtitle is-3 ml-2" style="display: inline;vertical-align:middle; ">RBC University Ave.</h1>
+            <span class="tag is-info ml-2" style="display: inline;vertical-align:middle;">In-Person</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c0-1" class="tag {{ colours[1][1] }} is-large">            <i class="fas fa-clock mr-2"></i>
+                <b id="wt1">{{ wt[1] }}</b>&nbsp;minutes</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c1-1" class="tag {{ colours[1][1] }} is-large">
+                <i class="fas fa-user-friends mr-2"></i> <b id="p1">{{ p[1] }}</b>&nbsp;people in line</span>
+          </div>
+        
+    </div>
+    <p>Powered by QuicQ API</p>
+</div>
+
+
+<div id="box-2" class="box" style="background-color: {{ colours[2][0] }};">
+    <div class="columns">
+        <div class="column is-6" style="display: inline;">
+            <img style="display: inline;vertical-align:middle; height: 50px;" src="/static/img/rbc.png" alt="">
+            <h1 class="subtitle is-3 ml-2" style="display: inline;vertical-align:middle; ">RBC Phillip St.</h1>
+            <span class="tag is-info ml-2" style="display: inline;vertical-align:middle;">In-Person</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c0-2" class="tag {{ colours[2][1] }} is-large">            <i class="fas fa-clock mr-2"></i>
+                <b id="wt2">{{ wt[2] }}</b>&nbsp;minutes</span>
+          </div>
+          <div class="column is-3" style="vertical-align:middle;">
+            <span id="c1-2" class="tag {{ colours[2][1] }} is-large">
+                <i class="fas fa-user-friends mr-2"></i> <b id="p2">{{ p[2] }}</b>&nbsp;people in line</span>
+          </div>
+        
+    </div>
+    <p>Powered by QuicQ API</p>
+
+</div>
+
+<script>
+
+    async function getData() {
+        const response = await fetch("/api/refined-lines");
+        const lines = await response.json();
+        console.log(lines);
+        const wt = lines[0];
+        const p = lines[1];
+        const colours = lines[2];
+        for (let i = 0; i <= 2; i++) {
+            document.querySelector('#p' + i).innerText = p[i];
+            document.querySelector('#wt' + i).innerText = wt[i];
+
+            document.querySelector('#box-' + i).style['background-color'] = colours[i][0];
+            document.querySelector('#c0-' + i).setAttribute('class', "tag is-large " + colours[i][1]);
+            document.querySelector('#c1-' + i).setAttribute('class', "tag is-large " + colours[i][1]);
+        }
+      }
+
+      setInterval(getData, 5000)
+
+
+</script>
+
+
+
+{% endblock %}

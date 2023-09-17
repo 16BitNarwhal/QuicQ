@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QuicQ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/d5b3ae59a9.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            height: max(100vh);
+            background-color: #d9d9d9;
+        }
+    </style>
+
+  </head>
+  <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <h2 class="title is-3">QuicQ</h2>
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+      
+            <a class="navbar-item">
+              Analytics
+            </a>
+
+            <a class="navbar-item">
+            Notifications
+            </a>
+        </div>
+      </nav>
+  <section class="section">
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </section>
+  </body>
+</html>
